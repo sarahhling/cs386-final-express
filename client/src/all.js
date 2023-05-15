@@ -4,17 +4,16 @@ import HeadlineBody from "./components/HeadlineBody";
 import { fetchNewsHeadlines } from "./scripts/newsAPIClient";
 import React, { useState, useEffect } from "react";
 
-export default function Science({ filters }) {
+export default function All({ filters }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const headlines = await fetchNewsHeadlines("science", "");
+      const headlines = await fetchNewsHeadlines("", "");
       setArticles(headlines);
     }
 
     fetchData();
   }, []);
-  console.log("science", "");
   return <HeadlineBody articles={articles} filters={filters} />;
 }

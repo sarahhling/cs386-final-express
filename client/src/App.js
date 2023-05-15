@@ -10,8 +10,14 @@ import Footer from "./components/Footer";
 import "./styles/globals.css";
 import Entertainment from "./entertainment";
 import News from "./news";
+import All from "./all";
+import Science from "./science";
+import Politics from "./politics";
+import World from "./world";
+import Business from "./biz";
+import Tech from "./tech";
 
-export default function MyApp() {
+export default function MyApp({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState("");
   const [dataArray, setDataArray] = useState([]);
@@ -34,37 +40,21 @@ export default function MyApp() {
 
   useEffect(() => {
     const fetchCurrentTime = async () => {
-      try {
-        const response = await fetch("/api/current-time");
-        if (response.ok) {
-          const { currentTime } = await response.json();
-          setCurrentTime(new Date(currentTime).toString());
-        } else {
-          console.error("Failed to fetch current time");
-        }
-      } catch (error) {
-        console.error("An error occurred while fetching current time", error);
-      }
+      await fetch("/api/current-time")
+        .then((res) => res.json())
+        .then((data) => setCurrentTime(data.currentTime));
     };
-
     fetchCurrentTime();
-  }, []);
+    const interval = setInterval(fetchCurrentTime, 1000);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date().toString());
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 500);
     }
   }, []);
 
@@ -86,12 +76,38 @@ export default function MyApp() {
             {isLoading ? (
               <HeadlineBodyPlaceholder />
             ) : (
-              //<Component {...pageProps} filters={dataArray} query={query} />
-              <p>Loaded</p>
+              <>
+                {window.location.pathname === "/" && (
+                  <All filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/entertainment" && (
+                  <Entertainment />
+                )}
+                {window.location.pathname === "/news" && (
+                  <News filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/science" && (
+                  <Science filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/biz" && (
+                  <Business filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/world" && (
+                  <World filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/politics" && (
+                  <Politics filters={dataArray} query={query} />
+                )}
+                {window.location.pathname === "/tech" && (
+                  <Tech filters={dataArray} query={query} />
+                )}
+              </>
             )}
           </Row>
           <Row>
-            <Footer time={new Date(currentTime)} />
+            <Footer
+              time={!currentTime ? "Loading..." : new Date(currentTime)}
+            />
           </Row>
         </Col>
       </Row>

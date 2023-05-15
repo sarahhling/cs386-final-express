@@ -1,10 +1,10 @@
 "use client";
 
-import HeadlineBody from "../components/HeadlineBody";
-import { fetchNewsHeadlines } from "../scripts/newsAPIClient";
+import HeadlineBody from "./components/HeadlineBody";
+import { fetchNewsHeadlines } from "./scripts/newsAPIClient";
 import React, { useState, useEffect } from "react";
 
-export default function World() {
+export default function World({ filters }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -16,5 +16,5 @@ export default function World() {
     fetchData();
   }, []);
   console.log("world", "");
-  return <HeadlineBody articles={articles} />;
+  return <HeadlineBody articles={articles} filters={filters} />;
 }

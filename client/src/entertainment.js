@@ -4,7 +4,7 @@ import HeadlineBody from "./components/HeadlineBody";
 import { fetchNewsHeadlines } from "./scripts/newsAPIClient";
 import React, { useState, useEffect } from "react";
 
-export default function Entertainment() {
+export default function Entertainment({ filters }) {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -15,5 +15,5 @@ export default function Entertainment() {
 
     fetchData();
   }, []);
-  return <HeadlineBody articles={articles} />;
+  return <HeadlineBody articles={articles} filters={filters} />;
 }
