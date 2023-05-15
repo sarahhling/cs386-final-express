@@ -7,9 +7,9 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// app.get("/api", (req, res) => {
-//   res.json({ message: "Hello from server!" });
-// });
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
 
 app.get("/api/current-time", (req, res) => {
   const currentTime = new Date().toLocaleString();
