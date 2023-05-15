@@ -36,7 +36,7 @@ export default function CustomDropdown({ sendToNav }) {
 
   return (
     <>
-      <Accordion className={` mx-auto pt-5 ${styles.custom_dropdown}`}>
+      <Accordion className={` mx-auto py-5 ${styles.custom_dropdown}`}>
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             <span className="fw-bold">Filter Results</span>

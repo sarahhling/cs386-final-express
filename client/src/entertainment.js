@@ -15,5 +15,6 @@ export default function Entertainment({ filters }) {
 
     fetchData();
   }, []);
+  console.log("entertainment");
   return <HeadlineBody articles={articles} filters={filters} />;
 }

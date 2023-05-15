@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const routes = require("../routes/routes");
 
 const PORT = process.env.PORT || 3001;
 
@@ -11,20 +12,8 @@ app.use(express.static(path.resolve(__dirname, "../client/build")));
 //   res.json({ message: "Hello from server!" });
 // });
 
-app.get("/api/current-time", (req, res) => {
-  const currentTime = new Date().toLocaleString();
-  console.log("retrieving time in server");
-  res.status(200).json({ currentTime });
-});
-
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
-
-app.get("/entertainment", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
-});
+app.use("/", routes);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  console.log(`Server started on ${PORT}`);
 });
