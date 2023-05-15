@@ -1,0 +1,18 @@
+.footer {
+  background-color: #2344c6;
+  color: #4cffc0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: #c2ffe9;
+}
+
+.newscatcher {
+  font-family: "Roboto", sans-serif;
+}

@@ -1,0 +1,12 @@
+#container {
+  min-height: 100vh;
+}
+
+#nav {
+  padding: 0;
+  max-width: 260px;
+}
+
+#headlineBody {
+  margin-left: 30px;
+}

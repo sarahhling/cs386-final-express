@@ -1,0 +1,91 @@
+.tag {
+  border-radius: 5px;
+  padding: 2px 4px;
+  margin-right: 4px;
+  font-size: 12px;
+  display: inline-block !important;
+}
+
+/* Bias Rating */
+
+.extreme_right {
+  background-color: rgb(111, 0, 0);
+  color: white;
+}
+
+.right {
+  background-color: rgb(191, 0, 0);
+  color: white;
+}
+
+.rightCenter {
+  background-color: rgb(255, 166, 166);
+}
+
+.leastBiased {
+  background-color: rgb(162, 95, 255);
+  color: white;
+}
+
+.leftCenter {
+  background-color: rgb(152, 185, 255);
+}
+
+.left {
+  background-color: rgb(0, 69, 219);
+  color: white;
+}
+
+.extreme_left {
+  background-color: rgb(0, 41, 129);
+  color: white;
+}
+
+/*
+Factual Report rating
+*/
+
+.veryHigh {
+  background-color: rgb(0, 93, 0);
+  color: white;
+}
+
+.high {
+  background-color: rgb(75, 150, 75);
+  color: white;
+}
+.mostlyFactual {
+  background-color: rgb(135, 175, 135);
+  color: white;
+}
+
+.mixed {
+  border: 1px rgb(84, 84, 84) solid;
+}
+
+.low {
+  background-color: #8b8b8b;
+  color: white;
+}
+
+.veryLow {
+  background-color: #3c3c3c;
+  color: white;
+}
+
+/* other categories */
+
+.satire {
+  background-color: purple;
+  color: white;
+}
+
+.conspiracy {
+  background-color: rgb(196, 108, 0);
+  color: white;
+}
+
+.opinion {
+  font-weight: bold;
+  color: red;
+}

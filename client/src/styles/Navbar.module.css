@@ -1,0 +1,18 @@
+.nav {
+  background-color: #233c9e;
+  color: white;
+  height: 100%;
+}
+.nav a {
+  color: white;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  background-color: #2344c6;
+  color: #15db95;
+}
+
+.img {
+  width: 14%;
+}

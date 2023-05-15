@@ -1,0 +1,9 @@
+.searchbutton {
+  font-weight: bold;
+  color: #1736b3;
+}
+
+.searchbutton:hover {
+  color: #15db95;
+  background-color: #1736b3;
+}
