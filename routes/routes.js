@@ -17,7 +17,7 @@ router.get("/api/current-time", (req, res) => {
 });
 
 // Route 3: /world
-router.get("/world", (req, res) => {
+router.get("/api/world", (req, res) => {
   console.log("routing /world");
   const query = "";
   const category = "world";
@@ -25,37 +25,37 @@ router.get("/world", (req, res) => {
 });
 
 // Route 4: /politics
-router.get("/politics", (req, res) => {
+router.get("/api/politics", (req, res) => {
   console.log("routing /politics");
   res.json({ query: "", category: "politics" });
 });
 
 // Route 5: /news
-router.get("/news", (req, res) => {
+router.get("/api/news", (req, res) => {
   console.log("routing /news");
   res.json({ query: "", category: "news" });
 });
 
 // Route 6: /
-router.get("/biz", (req, res) => {
+router.get("/api/biz", (req, res) => {
   console.log("routing /biz");
   res.json({ query: "", category: "business" });
 });
 
 // Route 7: /
-router.get("/science", (req, res) => {
+router.get("/api/science", (req, res) => {
   console.log("routing /science");
   res.json({ query: "", category: "science" });
 });
 
 // Route 8: /tech
-router.get("/tech", (req, res) => {
+router.get("/api/tech", (req, res) => {
   console.log("routing /tech");
   res.json({ query: "", category: "technology" });
 });
 
 // Route 9: /entertainment
-router.get("/entertainment", (req, res) => {
+router.get("/api/entertainment", (req, res) => {
   console.log("routing /entertainment");
   res.json({ query: "", category: "entertainment" });
 });

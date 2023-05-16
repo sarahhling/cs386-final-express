@@ -1,20 +1,9 @@
 "use client";
 
 import HeadlineBody from "./components/HeadlineBody";
-import { fetchNewsHeadlines } from "./scripts/newsAPIClient";
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function Entertainment({ filters }) {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const headlines = await fetchNewsHeadlines("entertainment", "");
-      setArticles(headlines);
-    }
-
-    fetchData();
-  }, []);
+export default function Entertainment(props) {
   console.log("entertainment");
-  return <HeadlineBody articles={articles} filters={filters} />;
+  return <HeadlineBody articles={props.articles} filters={props.filters} />;
 }

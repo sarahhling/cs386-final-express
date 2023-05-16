@@ -2,11 +2,11 @@
 
 import React from "react";
 import { useState } from "react";
-import { Nav, Image, Navbar } from "react-bootstrap";
+import { Nav, Image } from "react-bootstrap";
 import styles from "../styles/Navbar.module.css";
 import CustomDropdown from "./dropdown";
 
-const NavBar = ({ sendToApp }) => {
+const NavBar = ({ sendToApp, onRouteChange }) => {
   const [all, setAll] = useState("/images/all_b.png");
   const [world, setWorld] = useState("/images/world.png");
   const [news, setNews] = useState("/images/news.png");
@@ -20,6 +20,10 @@ const NavBar = ({ sendToApp }) => {
     sendToApp(data);
   };
 
+  const handleLinkClick = (newRoute) => {
+    onRouteChange(newRoute);
+  };
+
   // Function to receive the data from the child component
 
   return (
@@ -27,7 +31,6 @@ const NavBar = ({ sendToApp }) => {
       <Nav className={`flex-column pt-5 ${styles.nav}`}>
         <Nav.Item>
           <Nav.Link
-            href="/"
             id="all"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -36,6 +39,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setAll("/images/all_b.png");
             }}
+            onClick={() => handleLinkClick("/api/all")}
           >
             <Image
               src={all}
@@ -47,7 +51,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/news"
             id="news"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -56,6 +59,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setNews("/images/news.png");
             }}
+            onClick={() => handleLinkClick("/api/news")}
           >
             <Image
               src={news}
@@ -67,7 +71,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/world"
             id="world"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -76,6 +79,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setWorld("/images/world.png");
             }}
+            onClick={() => handleLinkClick("/api/world")}
           >
             <Image
               src={world}
@@ -87,7 +91,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/politics"
             id="pol"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -96,6 +99,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setPol("/images/pol.png");
             }}
+            onClick={() => handleLinkClick("/api/politics")}
           >
             <Image
               src={pol}
@@ -107,7 +111,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/science"
             id="sci"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -116,6 +119,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setSci("/images/sci.png");
             }}
+            onClick={() => handleLinkClick("/api/science")}
           >
             <Image
               src={sci}
@@ -127,7 +131,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/tech"
             id="tech"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -136,6 +139,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setTech("/images/tech.png");
             }}
+            onClick={() => handleLinkClick("/api/tech")}
           >
             <Image
               src={tech}
@@ -147,7 +151,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/entertainment"
             id="ent"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -156,6 +159,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setEnt("/images/ent.png");
             }}
+            onClick={() => handleLinkClick("/api/entertainment")}
           >
             <Image
               src={ent}
@@ -167,7 +171,6 @@ const NavBar = ({ sendToApp }) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
-            href="/biz"
             id="biz"
             className={`py-3 ${styles.navlink}`}
             onMouseEnter={() => {
@@ -176,6 +179,7 @@ const NavBar = ({ sendToApp }) => {
             onMouseLeave={() => {
               setBiz("/images/biz.png");
             }}
+            onClick={() => handleLinkClick("/api/biz")}
           >
             <Image
               src={biz}
