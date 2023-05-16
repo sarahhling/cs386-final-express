@@ -1,5 +1,4 @@
 "use client";
-import { fetchNewsHeadlines } from "./scripts/newsAPIClient";
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import NavBar from "./components/Navbar";
@@ -28,19 +27,31 @@ export default function App() {
   const [route, setRoute] = useState("/api/all");
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchData = async () => {
-      console.log("Fetching from app.js");
-      await fetch(route)
-        .then((res) => res.json())
-        .then((data) => {
-          setCategory(data.category);
-          setQuery(data.query);
-          const headlines = fetchNewsHeadlines(data.category, data.query);
-          setArticles(headlines);
-          setIsLoading(false);
-          console.log("fetch success");
-        });
+      setIsLoading(true);
+      try {
+        const response = await fetch(route);
+        const data = await response.json();
+
+        setCategory(data.category);
+        setQuery(data.query);
+
+        if (data.category !== undefined && data.query !== undefined) {
+          const url = `/api/getHeadlines?category=${encodeURIComponent(
+            data.category
+          )}&query=${encodeURIComponent(data.query)}`;
+          console.log("trying to get articles from route");
+          const headlinesResponse = await fetch(url);
+          const headlinesData = await headlinesResponse.json();
+
+          setArticles(headlinesData.headlines);
+        }
+        console.log("Fetch success");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchData();
@@ -49,6 +60,7 @@ export default function App() {
   //when route changes
   const handleRouteChange = (newRoute) => {
     setRoute(newRoute);
+    setQuery("");
   };
 
   // Function to receive the data from the child component
@@ -60,8 +72,14 @@ export default function App() {
   const handleQueryChange = async (myQuery) => {
     setIsLoading(true);
     setQuery(myQuery);
-    const headlines = await fetchNewsHeadlines(category, query);
-    setArticles(headlines);
+    const url = `/api/getHeadlines?category=${encodeURIComponent(
+      category
+    )}&query=${encodeURIComponent(myQuery)}`;
+
+    const headlinesResponse = await fetch(url);
+    const headlinesData = await headlinesResponse.json();
+
+    setArticles(headlinesData.headlines);
     setIsLoading(false);
   };
 
@@ -127,7 +145,12 @@ export default function App() {
                   path="/tech"
                   element={<Tech articles={articles} filters={filters} />}
                 />
-                <Route path="/entertainment" element={<Entertainment />} />
+                <Route
+                  path="/entertainment"
+                  element={
+                    <Entertainment articles={articles} filters={filters} />
+                  }
+                />
                 <Route
                   path="*"
                   element={<Custom404 articles={articles} filters={filters} />}

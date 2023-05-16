@@ -1,5 +1,60 @@
 const express = require("express");
 const router = express.Router();
+const articles = require("../data.js");
+var axios = require("axios").default;
+
+// Route 0: /api/current-time
+router.get("/api/current-time", (req, res) => {
+  const currentTime = new Date().toLocaleString();
+  console.log("Retrieving time in server");
+  res.status(200).json({ currentTime });
+});
+
+// Route 1: /api/getHeadlines & queries
+router.get("/api/getHeadlines", (req, res) => {
+  const category = req.query.category || "";
+  const query = req.query.query || "";
+
+  var headlineSearch = {
+    method: "GET",
+    url: "https://api.newscatcherapi.com/v2/latest_headlines",
+    params: {
+      lang: "en",
+      countries: "us",
+      topic: req.query.category,
+    },
+    headers: {
+      "x-api-key": "tzOt5ZjOkKWnKDHUyDJC8zFTJ1P9oKB_wK2Ua_nj7Vw",
+    },
+  };
+
+  var querySearch = {
+    method: "GET",
+    url: "https://api.newscatcherapi.com/v2/search",
+    params: {
+      lang: "en",
+      countries: "us",
+      topic: req.query.category,
+      q: req.query.query,
+    },
+    headers: {
+      "x-api-key": "u4QBoOtn5pq2WZ-G0WU3GaDxc9OWR1Snor1cGoR0FPg",
+    },
+  };
+
+  var target = query ? querySearch : headlineSearch;
+
+  axios
+    .request(target)
+    .then(function (response) {
+      headlines = response.data.articles;
+      console.log("API--> cat: " + category + " query: " + query);
+      res.status(200).json({ headlines });
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+});
 
 // Route 2: /
 router.get("/api/all", (req, res) => {
@@ -7,13 +62,6 @@ router.get("/api/all", (req, res) => {
   const query = "";
   const category = "";
   res.status(200).json({ query, category });
-});
-
-// Route 1: /api/current-time
-router.get("/api/current-time", (req, res) => {
-  const currentTime = new Date().toLocaleString();
-  console.log("Retrieving time in server");
-  res.status(200).json({ currentTime });
 });
 
 // Route 3: /world

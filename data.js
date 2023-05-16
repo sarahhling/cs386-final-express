@@ -1,4 +1,4 @@
-export const articles = [
+const articles = [
   {
     title: "Woman Injured In Physical Altercation At Columbia Law School",
     author: "Bwog Staff",
@@ -723,3 +723,5 @@ export const articles = [
     _id: "bebf9d359170c5af547df395edab8ff4",
   },
 ];
+
+module.exports = articles;
