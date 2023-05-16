@@ -67,6 +67,14 @@ export default function App() {
 
   useEffect(() => {
     console.log("Query value in App:", query);
+    if (query) {
+      document.getElementById("search_input").value = "";
+      document.getElementById("search_results").classList.remove("collapse");
+      document.getElementById("search_results").innerHTML =
+        "Your Search Results for: <strong>" + query + "</strong>";
+    } else {
+      document.getElementById("search_results").classList.add("collapse");
+    }
   }, [query]);
 
   return (
@@ -84,6 +92,7 @@ export default function App() {
               category={category}
               onQueryChange={handleQueryChange}
             ></Searchbar>
+            <h3 id="search_results" className="mx-auto collapse"></h3>
           </Row>
           <Row id={styles.headlineBody} className="pb-5">
             {isLoading ? (

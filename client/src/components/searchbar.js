@@ -7,9 +7,9 @@ function Searchbar({ onQueryChange, category }) {
 
   const handleSearch = () => {
     onQueryChange(query); // Call the callback function with the query value
-    document.getElementById("search_input").value = "";
-    document.getElementById("search_results").innerHTML =
-      "Your Search Results for: <strong>" + query + "</strong>";
+    // document.getElementById("search_input").value = "";
+    // document.getElementById("search_results").innerHTML =
+    //   "Your Search Results for: <strong>" + query + "</strong>";
   };
 
   return (
@@ -33,7 +33,6 @@ function Searchbar({ onQueryChange, category }) {
           Search
         </Button>
       </InputGroup>
-      <h3 id="search_results" className="mx-auto"></h3>
     </>
   );
 }
