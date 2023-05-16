@@ -70,25 +70,25 @@ export default function App() {
   }, [query]);
 
   return (
-    <Row>
-      <Col id={styles.nav} xs={5} sm={5} md={3} lg={3} xl={3}>
-        <NavBar sendToApp={handleData2} onRouteChange={handleRouteChange} />
-      </Col>
-      <Col xs={7} sm={7} md={9} lg={9} xl={9}>
-        <Row className="justify-content-center">
-          <Logo />
-        </Row>
-        <Row className="justify-content-center">
-          <Searchbar
-            category={category}
-            onQueryChange={handleQueryChange}
-          ></Searchbar>
-        </Row>
-        <Row id={styles.headlineBody} className="pb-5">
-          {isLoading ? (
-            <HeadlineBodyPlaceholder />
-          ) : (
-            <Router>
+    <Router>
+      <Row>
+        <Col id={styles.nav} xs={5} sm={5} md={3} lg={3} xl={3}>
+          <NavBar sendToApp={handleData2} onRouteChange={handleRouteChange} />
+        </Col>
+        <Col xs={7} sm={7} md={9} lg={9} xl={9}>
+          <Row className="justify-content-center">
+            <Logo />
+          </Row>
+          <Row className="justify-content-center">
+            <Searchbar
+              category={category}
+              onQueryChange={handleQueryChange}
+            ></Searchbar>
+          </Row>
+          <Row id={styles.headlineBody} className="pb-5">
+            {isLoading ? (
+              <HeadlineBodyPlaceholder />
+            ) : (
               <Routes>
                 <Route
                   path="/"
@@ -124,10 +124,10 @@ export default function App() {
                   element={<Custom404 articles={articles} filters={filters} />}
                 />
               </Routes>
-            </Router>
-          )}
-        </Row>
-      </Col>
-    </Row>
+            )}
+          </Row>
+        </Col>
+      </Row>
+    </Router>
   );
 }

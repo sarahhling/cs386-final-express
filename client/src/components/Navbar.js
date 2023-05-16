@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Nav, Image } from "react-bootstrap";
 import styles from "../styles/Navbar.module.css";
 import CustomDropdown from "./dropdown";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ sendToApp, onRouteChange }) => {
   const [all, setAll] = useState("/images/all_b.png");
@@ -15,6 +16,9 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
   const [sci, setSci] = useState("/images/sci.png");
   const [tech, setTech] = useState("/images/tech.png");
   const [ent, setEnt] = useState("/images/ent.png");
+
+  const navigate = useNavigate();
+
   const handleData = (data) => {
     console.log("from nav " + data);
     sendToApp(data);
@@ -39,7 +43,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setAll("/images/all_b.png");
             }}
-            onClick={() => handleLinkClick("/api/all")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/");
+              handleLinkClick("/api/all"); // Perform your desired action
+            }}
           >
             <Image
               src={all}
@@ -59,7 +67,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setNews("/images/news.png");
             }}
-            onClick={() => handleLinkClick("/api/news")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/news");
+              handleLinkClick("/api/news"); // Perform your desired action
+            }}
           >
             <Image
               src={news}
@@ -79,7 +91,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setWorld("/images/world.png");
             }}
-            onClick={() => handleLinkClick("/api/world")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/world");
+              handleLinkClick("/api/world"); // Perform your desired action
+            }}
           >
             <Image
               src={world}
@@ -99,7 +115,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setPol("/images/pol.png");
             }}
-            onClick={() => handleLinkClick("/api/politics")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/politics");
+              handleLinkClick("/api/politics"); // Perform your desired action
+            }}
           >
             <Image
               src={pol}
@@ -119,7 +139,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setSci("/images/sci.png");
             }}
-            onClick={() => handleLinkClick("/api/science")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/science");
+              handleLinkClick("/api/science"); // Perform your desired action
+            }}
           >
             <Image
               src={sci}
@@ -139,7 +163,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setTech("/images/tech.png");
             }}
-            onClick={() => handleLinkClick("/api/tech")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/tech");
+              handleLinkClick("/api/tech"); // Perform your desired action
+            }}
           >
             <Image
               src={tech}
@@ -159,7 +187,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setEnt("/images/ent.png");
             }}
-            onClick={() => handleLinkClick("/api/entertainment")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/entertainment");
+              handleLinkClick("/api/entertainment"); // Perform your desired action
+            }}
           >
             <Image
               src={ent}
@@ -179,7 +211,11 @@ const NavBar = ({ sendToApp, onRouteChange }) => {
             onMouseLeave={() => {
               setBiz("/images/biz.png");
             }}
-            onClick={() => handleLinkClick("/api/biz")}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate("/biz");
+              handleLinkClick("/api/biz"); // Perform your desired action
+            }}
           >
             <Image
               src={biz}
