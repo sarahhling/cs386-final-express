@@ -5,7 +5,7 @@ import { processTag } from "../scripts/processTag";
 function Tag({ type }) {
   const { style, value } = processTag(type);
 
-  return <div className={`${styles.tag} ${style}`}>{value}</div>;
+  return <span className={`${styles.tag} ${style}`}>{value}</span>;
 }
 
 export default Tag;

@@ -25,8 +25,8 @@ function HeadlineBody(props) {
   }, [category, query]);
 
   useEffect(() => {
-    // Skip the first trigger
-    if (filterTriggerCount === 0) {
+    // Skip the first trigger since filters will be empty
+    if (!filterTriggerCount) {
       setFilterTriggerCount(1);
     } else {
       setFilterEnabled(true);

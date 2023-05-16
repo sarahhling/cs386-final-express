@@ -14,9 +14,27 @@ import HeadlineBodyPlaceholder from "./components/HeadlineBodyPlaceholder";
 export default function App() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [dataArray, setDataArray] = useState([]);
+  const [category, setCategory] = useState("");
   const [query, setQuery] = useState("");
+  const [dataArray, setDataArray] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Fetching from app.js");
+      await fetch("/api/all")
+        .then((res) => res.json())
+        .then((data) => {
+          setCategory(data.category);
+          setQuery(data.query);
+          const headlines = fetchNewsHeadlines(data.category, data.query);
+          setArticles(headlines);
+          setIsLoading(false);
+          console.log("fetch success");
+        });
+    };
+
+    fetchData();
+  }, []);
 
   // Function to receive the data from the child component
   const handleData2 = (data) => {
@@ -24,31 +42,18 @@ export default function App() {
     console.log("from app " + data);
   };
 
-  const handleQueryChange = (myQuery) => {
-    // Perform actions with the query value in the parent component
+  const handleQueryChange = async (myQuery) => {
+    setIsLoading(true);
     setQuery(myQuery);
+    const headlines = await fetchNewsHeadlines(category, query);
+    setArticles(headlines);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     console.log("Query value in App:", query);
   }, [query]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      const headlines = await fetchNewsHeadlines("", "");
-      setArticles(headlines);
-    }
-
-    fetchData();
-  }, []);
   return (
     <Row>
       <Col id={styles.nav} xs={5} sm={5} md={3} lg={3} xl={3}>
@@ -59,9 +64,12 @@ export default function App() {
           <Logo />
         </Row>
         <Row className="justify-content-center">
-          <Searchbar onQueryChange={handleQueryChange}></Searchbar>
+          <Searchbar
+            category={category}
+            onQueryChange={handleQueryChange}
+          ></Searchbar>
         </Row>
-        <Row id={styles.headlineBody}>
+        <Row id={styles.headlineBody} className="pb-5">
           {isLoading ? (
             <HeadlineBodyPlaceholder />
           ) : (

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, InputGroup, Form } from "react-bootstrap";
 import styles from "../styles/Searchbar.module.css";
 
-function Searchbar({ onQueryChange }) {
+function Searchbar({ onQueryChange, category }) {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
@@ -17,7 +17,9 @@ function Searchbar({ onQueryChange }) {
       <InputGroup className="mb-3 w-50 mx-auto">
         <Form.Control
           id="search_input"
-          placeholder="Search for news headlines here..."
+          placeholder={`Search for ${
+            category === "" ? "all" : category
+          } headlines here...`}
           onChange={(e) => {
             setQuery(e.target.value);
           }}

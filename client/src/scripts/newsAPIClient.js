@@ -25,7 +25,7 @@ async function fetchNewsHeadlines(category, query) {
   //   console.log("couldnt fetch");
   //   return [];
   // }
-
+  console.log("API--> cat: " + category + " query: " + query);
   return articles;
 }
 
