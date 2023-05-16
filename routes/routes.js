@@ -74,7 +74,5 @@ router.get("/api/check-source/:source", (req, res) => {
 
 // Route 4: handle newsRatings.json
 
-// Route 5: ???
-
 // Export the router
 module.exports = router;
