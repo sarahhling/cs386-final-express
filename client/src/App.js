@@ -151,10 +151,7 @@ export default function App() {
                     <Entertainment articles={articles} filters={filters} />
                   }
                 />
-                <Route
-                  path="*"
-                  element={<Custom404 articles={articles} filters={filters} />}
-                />
+                <Route path="/*" element={<Custom404 />} />
               </Routes>
             )}
           </Row>

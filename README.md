@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# News Literacy App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+News Literacy App is a news headline aggregator (sourced and categorized by newscatcher API). Each headline
+is tagged by its bias rating and factual reporting rating (About 400 sources gathered from
+mediabiasfactcheck.com and manually entered into a csv file).
+Users can click on the navigation bar to look at headlines from these categories: News, Politics, World,
+Technology, Science, Business, Entertainment, or All. Users can also filter the headlines by preferred bias
+rating or factual reporting. Users can also search for headlines in the search bar. The purpose of this app
+is to provide users with information about the biases and factual reporting ratings of various news sources
+so they can make more informed judgments when reading news headlines and improve on news literacy.
+
+## Technologies Used
+
+Express Framework, Node.js, ReactJS, React-Router-Dom, React-Bootstrap, Bootstrap, Axios,
+Newscatcher API, deployed onto Heroku, icons sourced from icons8.com, Site logo created using
+looka.com
 
 ## Available Scripts
 
